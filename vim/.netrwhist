@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/kiko/.theano'
+let g:netrw_dirhist_2='/home/kiko/www/optikatitus.sk/canvas/sandbox/app/templates'
+let g:netrw_dirhist_3='/home/kiko/Downloads/drupal'
+let g:netrw_dirhist_4='/home/kiko/.theano'
+let g:netrw_dirhist_5='/home/kiko/workspace/crawlers/domain_checker-win/domain_checker/spiders'
