@@ -1,6 +1,11 @@
-dotfiles
+Dotfiles
 ========
 
-```git clone git://github.com/kikoval/dotfiles ~/dotfiles
-cd ~/dotfiles
-./makesymlinks.sh```
+Installation
+------------
+
+``` bash
+$ git clone git://github.com/kikoval/dotfiles ~/dotfiles
+$ cd ~/dotfiles
+$ ./makesymlinks.sh
+```
