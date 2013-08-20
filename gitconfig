@@ -1,0 +1,20 @@
+[core]
+	editor = vim
+[merge]
+	tool = vimdiff
+[color]
+	ui = true
+[alias]
+        br = branch -a
+        s = status -u -s
+        st = status
+        ci = commit
+        redocommit = reset --soft HEAD^
+        pl = pull
+        ph = push
+        lg = log -p --graph
+        l2 = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[include]
+        path = .gitconfig.local
+
