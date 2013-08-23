@@ -105,10 +105,16 @@ fi
 # program name shortening
 alias g=git
 
-# git prompt
+# pimped prompt
 parse_git_branch() {
+  # check if we're in a git repo
   ref=$(git symbolic-ref -q HEAD 2> /dev/null) || return
-  printf "${1:-(%s)}" "${ref#refs/heads/}"
+
+  # check if it's dirty (via github.com/sindresorhus/pure)
+  dirty=$(git diff --quiet --ignore-submodules HEAD &>/dev/null; [ $? -eq 1 ]&& echo -e "*")
+
+  # parse branch name
+  printf "${1:-(%s)}" "${ref#refs/heads/}"$dirty
 }
 
 parse_svn_revision() {
@@ -125,7 +131,8 @@ pimp_prompt() {
   local   LIGHT_RED="\[\033[1;31m\]"
   local       GREEN="\[\033[0;32m\]"
   local LIGHT_GREEN="\[\033[1;32m\]"
-  local       WHITE="\[\033[0;37m\]"
+  local       WHITE="\[\033[00m\]"
+  local       RESET="\[\033[00m\]"
   local  WHITE_BOLD="\[\033[1;37m\]"  
   local  LIGHT_GRAY="\[\033[0;37m\]"
   case $TERM in
@@ -136,8 +143,7 @@ pimp_prompt() {
     TITLEBAR=""
     ;;
   esac
-#PS1="${TITLEBAR}[$WHITE\u@$BLUE_BOLD\h$WHITE \w$GREEN\$(parse_git_branch)\$(parse_svn_revision) $RED\$(~/.rvm/bin/rvm-prompt v g)$WHITE]\$ "
-PS1="${TITLEBAR}$WHITE\u@$BLUE_BOLD\h$WHITE:\w $GREEN\$(parse_git_branch)\$(parse_svn_revision)$WHITE\$ "
+PS1="${TITLEBAR}$LIGHT_GRAY\u@$BLUE_BOLD\h$WHITE_BOLD:\w$GREEN\$(parse_git_branch)\$(parse_svn_revision)$RESET\$ "
 PS2='> '
 PS4='+ '
 }
