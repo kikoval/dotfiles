@@ -1,15 +1,41 @@
-
 set nocompatible " use vim defaults
 
-" Use Pathogen:
-call pathogen#runtime_append_all_bundles()
-call pathogen#helptags()
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM UI
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" This setting will cause the cursor to very briefly jump to a
+" brace/parenthese/bracket's 'match' whenever you type a closing or opening
+" brace/parenthese/bracket
+set showmatch
 
+" do incremental searching
+set incsearch
+
+" show a ruler
+set ruler
+
+" Nice statusbar
+set laststatus=2
+set statusline=
+set statusline+=%f\                    " file name
+set statusline+=%h%1*%m%r%w%0*         " flags
+set statusline+=%=                     " right align
+set statusline+=%-14.(%l,%c%V%)\ %<%P  " offset
+
+" No annoying sound on errors
+set noerrorbells
+
+" Zapnutí číslování řádků. Pro vypnutí nastavte "set nonu" 
+set nu
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors and Fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " have syntax highlighting in terminals which can display colours:
 if has('syntax') && ((&t_Co > 2) || has('gui_runing'))
   syntax on
-    " Zvýrazňování výsledků hledání
-    set hls
+  " Zvýrazňování výsledků hledání
+  set hls
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -27,22 +53,12 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
-" This setting will cause the cursor to very briefly jump to a
-" brace/parenthese/bracket's 'match' whenever you type a closing or opening
-" brace/parenthese/bracket
-set showmatch
-
-" do incremental searching
-set incsearch
-
 " Python indentation
 autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8 textwidth=79
 
-" Zapnutí číslování řádků. Pro vypnutí nastavte "set nonu" 
-set nu
-
-" Zalamování řádků (místo pokračování v jednom dlouhém)
-" set lbr
+" Linebreak on 500 characters
+set lbr
+set tw=500
 
 " Omni completion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
@@ -51,9 +67,6 @@ autocmd FileType python set omnifunc=pythoncomplete#Complete
 " search in a singe file. This will confuse Latex-Suite. Set your grep
 " program to always generate a file-name.
 set grepprg=grep\ -nH\ $*
-
-" show a ruler
-set ruler
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -74,15 +87,25 @@ if has("autocmd")
       \ endif
 endif " has("autocmd")
   
- command! Q q " Bind :Q to :q
+command! Q q " Bind :Q to :q
 
- " Pasting raw text without indending, etc.
- set pastetoggle=<F2>
+" Pasting raw text without indending, etc.
+set pastetoggle=<F2>
 
-" Nice statusbar
-set laststatus=2
-set statusline=
-set statusline+=%f\                    " file name
-set statusline+=%h%1*%m%r%w%0*         " flags
-set statusline+=%=                     " right align
-set statusline+=%-14.(%l,%c%V%)\ %<%P  " offset
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Editing mappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
+nmap <M-j> mz:m+<cr>`z
+nmap <M-k> mz:m-2<cr>`z
+vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+
+" Delete trailing white space on save, useful for Python and CoffeeScript ;)
+func! DeleteTrailingWS()
+  exe "normal mz"
+  %s/\s\+$//ge
+  exe "normal `z"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
