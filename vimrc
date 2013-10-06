@@ -12,6 +12,15 @@ if has('syntax') && ((&t_Co > 2) || has('gui_runing'))
     set hls
 endif
 
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Text, tab and indent related
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Use Pathogen:
+call pathogen#infect()
+
 set autoindent
 
 set expandtab
