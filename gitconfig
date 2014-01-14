@@ -9,6 +9,7 @@
         s = status -u -s
         st = status
         ci = commit
+        co = checkout
         redocommit = reset --soft HEAD^
         pl = pull
         ph = push
@@ -18,3 +19,5 @@
 [include]
         path = .gitconfig.local
 
+[push]
+	default = simple
