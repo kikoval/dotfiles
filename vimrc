@@ -45,7 +45,7 @@ set encoding=utf8
 " Text, tab and indent related
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Use Pathogen:
-call pathogen#infect()
+execute pathogen#infect()
 
 set autoindent
 
