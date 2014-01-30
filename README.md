@@ -1,6 +1,13 @@
 Dotfiles
 ========
 
+Prerequisites
+--------------
+
+``` bash
+$ sudo apt-get install git vim vim-latexsuite
+```
+
 Installation
 ------------
 
