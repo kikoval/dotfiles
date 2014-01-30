@@ -60,6 +60,10 @@ autocmd FileType python setlocal expandtab shiftwidth=4 softtabstop=4 tabstop=8 
 set lbr
 set tw=500
 
+" Highlight character on 81-th column
+highlight ColorColumn ctermbg=red
+call matchadd('ColorColumn', '\%81v', 100)
+
 " Omni completion
 autocmd FileType python set omnifunc=pythoncomplete#Complete
 
@@ -95,11 +99,11 @@ set pastetoggle=<F2>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Editing mappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+ vmap  <expr>  <LEFT>   DVB_Drag('left')
+ vmap  <expr>  <RIGHT>  DVB_Drag('right')
+ vmap  <expr>  <S-DOWN>   DVB_Drag('down')
+ vmap  <expr>  <S-UP>     DVB_Drag('up')
+ vmap  <expr>  D        DVB_Duplicate()
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
