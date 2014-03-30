@@ -117,3 +117,4 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 " Addons
 set runtimepath+=~/.vim/vim-addon-manager
 call vam#ActivateAddons(["vim-twig", "surround"])
+VAMActivate tlib matchit.zip
