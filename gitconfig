@@ -15,6 +15,7 @@
         pl = pull
         ph = push
         lg = log -p --graph
+        l1 = log --oneline --decorate
         l2 = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 
 [include]
