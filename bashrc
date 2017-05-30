@@ -85,6 +85,8 @@ alias u='sudo aptitude update && sudo aptitude safe-upgrade && sudo apt autoclea
 alias cd..="cd .."
 alias lsnew=" ls -al --time-style=+%D | grep `date +%D` "
 
+alias docker-rmall='docker rm -f `docker ps -a -q`'
+
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
