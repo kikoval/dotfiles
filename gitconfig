@@ -6,10 +6,13 @@
 	ui = true
 [alias]
         br = branch -a
+        brd = branch -D
+        brdR = push origin --delete # delete remote branch
         s = status -u -s
         st = status
         ci = commit
         co = checkout
+        cob = checkout -b
         redocommit = reset --soft HEAD^
         unstage = reset -- HEAD
         pl = pull
