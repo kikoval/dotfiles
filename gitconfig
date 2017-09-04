@@ -6,6 +6,7 @@
 	ui = true
 [alias]
         br = branch -a
+        brloc = !git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }' # non-tracking local branches
         brd = branch -D
         brdR = push origin --delete # delete remote branch
         s = status -u -s
