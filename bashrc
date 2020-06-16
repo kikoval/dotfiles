@@ -106,6 +106,13 @@ fi
 
 # program name shortening
 alias g=git
+# setup autocompletion
+if [ -f "/usr/share/bash-completion/completions/git" ]; then
+  source /usr/share/bash-completion/completions/git
+  __git_complete g _git
+  else
+  echo "Error loading git completions"
+fi
 
 # pimped prompt
 parse_git_branch() {
