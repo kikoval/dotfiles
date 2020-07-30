@@ -27,3 +27,6 @@
 
 [push]
 	default = simple
+
+[submodule]
+        recurse = true
