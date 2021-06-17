@@ -81,7 +81,7 @@ fi
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -lah'
-alias u='sudo aptitude update && sudo aptitude safe-upgrade && sudo apt autoclean'
+alias u='sudo apt update && sudo apt upgrade && sudo apt autoclean'
 alias cd..="cd .."
 alias lsnew=" ls -al --time-style=+%D | grep `date +%D` "
 
