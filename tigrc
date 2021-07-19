@@ -3,3 +3,4 @@ set main-view = line-number:no,interval=5 id:yes date:default author:full commit
 
 # user-defined commands
 bind generic + !git commit --amend
+bind main R !git rebase -i --autosquash %(commit)^
