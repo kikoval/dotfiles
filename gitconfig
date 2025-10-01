@@ -5,6 +5,7 @@
 [color]
 	ui = true
 [alias]
+        branch = branch --sort=-committerdate
         br = branch -a
         brloc = !git branch -vv | cut -c 3- | awk '$3 !~/\\[/ { print $1 }' # non-tracking local branches
         brd = branch -D
@@ -30,3 +31,10 @@
 
 [submodule]
         recurse = true
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
