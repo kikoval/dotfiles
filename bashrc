@@ -126,13 +126,6 @@ parse_git_branch() {
   printf "${1:-(%s)}" "${ref#refs/heads/}"$dirty
 }
 
-parse_svn_revision() {
-  local DIRTY REV=$(svn info 2>/dev/null | grep Revision | sed -e 's/Revision: //')
-  [ "$REV" ] || return
-  [ "$(svn st)" ] && DIRTY=' *'
-  echo "(r$REV$DIRTY)"
-}
-
 pimp_prompt() {
   local        BLUE="\[\033[0;34m\]"
   local   BLUE_BOLD="\[\033[1;34m\]"
@@ -152,9 +145,12 @@ pimp_prompt() {
     TITLEBAR=""
     ;;
   esac
-PS1="${TITLEBAR}$LIGHT_GRAY\u@$BLUE_BOLD\h$WHITE_BOLD:\w$GREEN\$(parse_git_branch)\$(parse_svn_revision)$RESET\$ "
+PS1="${TITLEBAR}$LIGHT_GRAY\u@$BLUE_BOLD\h$WHITE_BOLD:\w$GREEN\$(parse_git_branch)$RESET\$ "
 PS2='> '
 PS4='+ '
 }
 pimp_prompt
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/kiko/.lmstudio/bin"
