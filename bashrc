@@ -81,11 +81,16 @@ fi
 alias ll='ls -alFh'
 alias la='ls -A'
 alias l='ls -lah'
-alias u='sudo apt update && sudo apt upgrade && sudo apt autoclean'
+if command -v apt >/dev/null; then
+  alias u='sudo apt update && sudo apt upgrade && sudo apt autoclean'
+elif command -v dnf >/dev/null; then
+  alias u='sudo dnf upgrade --refresh'
+fi
 alias cd..="cd .."
-alias lsnew=" ls -al --time-style=+%D | grep `date +%D` "
+alias lsnew='ls -al --time-style=+%D | grep "$(date +%D)"'
 
 alias docker-rmall='docker rm -f `docker ps -a -q`'
+alias podman-rmall='podman rm -af'
 
 
 # Alias definitions.
@@ -117,6 +122,7 @@ fi
 # pimped prompt
 parse_git_branch() {
   # check if we're in a git repo
+  local ref dirty
   ref=$(git symbolic-ref -q HEAD 2> /dev/null) || return
 
   # check if it's dirty (via github.com/sindresorhus/pure)
@@ -153,11 +159,11 @@ pimp_prompt
 
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:$HOME/.lmstudio/bin"
+case ":$PATH:" in *":$HOME/.lmstudio/bin:"*) ;; *) export PATH="$PATH:$HOME/.lmstudio/bin";; esac
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/google-cloud-sdk/path.bash.inc" ]; then . "$HOME/google-cloud-sdk/path.bash.inc"; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/google-cloud-sdk/completion.bash.inc" ]; then . "$HOME/google-cloud-sdk/completion.bash.inc"; fi
-export PATH="$HOME/.local/bin:$PATH"
+case ":$PATH:" in *":$HOME/.local/bin:"*) ;; *) export PATH="$HOME/.local/bin:$PATH";; esac
